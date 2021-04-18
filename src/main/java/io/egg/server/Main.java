@@ -35,12 +35,9 @@ public class Main {
         MinecraftServer.getSchedulerManager().buildTask(() -> InstanceManager.get().tick()).repeat(1, TimeUnit.TICK).schedule();
         MinecraftServer.getBiomeManager().addBiome(VoidWorldGenerator.LOBBY);
         MinecraftServer.getCommandManager().register(new StopCommand());
-        MinecraftServer.getCommandManager().register(new SpawnBoatCommand());
         MinecraftServer.getCommandManager().register(new GamemodeCommand());
-        MinecraftServer.getCommandManager().register(new DisguiseCommand());
         MinecraftServer.getCommandManager().register(new SwitchInstanceCommand());
         MinecraftServer.getCommandManager().register(new EditMapCommand());
-        MinecraftServer.getCommandManager().register(new CreateBlockhuntCommand());
         MinecraftServer.getCommandManager().register(new ExportWorldCommand());
         MinecraftServer.setChunkViewDistance(8);
 

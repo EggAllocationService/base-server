@@ -5,7 +5,7 @@ import net.minestom.server.event.Event;
 import net.minestom.server.utils.Position;
 
 public class PlayerJoinProfileEvent extends Event {
-    private String cancelReason = "[no reason] - THIS IS A BUG, PLEASE REPORT TO KYLE";
+    private String cancelReason = "[no reason] - THIS IS A BUG, PLEASE REPORT TO SERVER ADMIN";
     private Position joinPos = new Position(0.5, 65, 0.5);
     private final Player p;
     public PlayerJoinProfileEvent(Player e) {

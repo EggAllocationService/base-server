@@ -43,15 +43,7 @@ public class WorldEditorDelegate extends DefaultProfileDelegate {
     @Override
     @EventHandler
     public void removeBlock(PlayerBlockBreakEvent e) {
-        if (e.getPlayer().getItemInMainHand().getMaterial() == Material.BLAZE_ROD && e.getPlayer().getGameMode() == GameMode.CREATIVE) {
-            e.setCancelled(true);
-            Instance i = e.getPlayer().getInstance();
-            SerializableData d = new SerializableDataImpl();
-            d.set("block", 1);
-            BlockPosition target = e.getBlockPosition().add(0, 0,0);
 
-            i.setCustomBlock(target.getX(), target.getY(), target.getZ(), "optional_block", d);
-        }
     }
 
     @EventHandler
@@ -62,20 +54,11 @@ public class WorldEditorDelegate extends DefaultProfileDelegate {
         } else if (e.getItemStack().getMaterial() == Material.WATER_BUCKET && e.getPlayer().getGameMode() == GameMode.CREATIVE) {
             Instance i = e.getPlayer().getInstance();
             i.setBlock(e.getPosition().add(0, 1, 0), Block.WATER);
-
-        } else if (e.getItemStack().getMaterial() == Material.BLAZE_ROD && e.getPlayer().getGameMode() == GameMode.CREATIVE) {
-            Instance i = e.getPlayer().getInstance();
-            SerializableData d = new SerializableDataImpl();
-            d.set("primary", false);
-            d.set("tag", "");
-            BlockPosition target = e.getPosition().add(0, 1,0);
-
-            i.setCustomBlock(target.getX(), target.getY(), target.getZ(), "spawn_location", d);
         }
     }
 
     @Override
     public String getName() {
-        return "io.egg.MapEditor";
+        return "World Editor";
     }
 }

@@ -1,7 +1,6 @@
 package io.egg.server.instances;
 
 import com.google.common.collect.HashBiMap;
-import io.egg.server.blocks.OptionalBlock;
 import io.egg.server.loading.DatabaseWorldLoader;
 import io.egg.server.profiles.DefaultProfileDelegate;
 import io.egg.server.profiles.PlayerJoinProfileEvent;
@@ -41,10 +40,7 @@ public class InstanceManager {
     }
 
     public void tick() {
-        OptionalBlock.tick();
-        for (ProfiledInstance i : instances.values()) {
-            i.getDelegate().tick();
-        }
+
     }
 
     public ProfiledInstance getProfile(String name) {
