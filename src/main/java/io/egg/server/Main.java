@@ -26,10 +26,10 @@ public class Main {
 
     public static void main(String[] args) {
         MinecraftServer m = MinecraftServer.init();
-        MinecraftServer.setBrandName("Cabot");
+        MinecraftServer.setBrandName("EggServer");
 
         InstanceManager.init();
-        Database.init();
+        Database.init("testing");
         MinecraftServer.getCommandManager().register(new SaveCommand());
         MinecraftServer.getSchedulerManager().buildTask(new InstanceNameTask()).repeat(100, TimeUnit.MILLISECOND).schedule();
         MinecraftServer.getSchedulerManager().buildTask(() -> InstanceManager.get().tick()).repeat(1, TimeUnit.TICK).schedule();
@@ -70,8 +70,9 @@ public class Main {
         m.start("0.0.0.0", 25565, (playerConnection, responseData) -> {
             responseData.setOnline(69);
             responseData.setMaxPlayer(420);
-            responseData.addPlayer("Notch", UUID.randomUUID());
-            responseData.addPlayer("Sam's Ego", UUID.randomUUID());
+            for (Player p : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
+                responseData.addPlayer(p);
+            }
             responseData.setDescription(Component.text("Standard Testing Server Instance", TextColor.color(0xc13f6f)));
         });
 

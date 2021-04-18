@@ -19,8 +19,8 @@ public class Database {
     public static Database getInstance() {
         return instance;
     }
-    public static void init() {
-        instance = new Database();
+    public static void init(String databaseName) {
+        instance = new Database(databaseName);
     }
 
     MongoClient client;
@@ -28,11 +28,12 @@ public class Database {
     public MongoCollection<World> worlds;
     public MongoCollection<WorldChunk> worldChunks;
 
-    public Database() {
+    public Database(String databaseName) {
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
         client = MongoClients.create("mongodb://192.168.3.10:25563/?retryWrites=true&w=majority");
-        db = client.getDatabase("minigames").withCodecRegistry(pojoCodecRegistry);
+
+        db = client.getDatabase(databaseName).withCodecRegistry(pojoCodecRegistry);
         worlds = db.getCollection("worlds", World.class);
         worldChunks = db.getCollection("chunks", WorldChunk.class);
     }
